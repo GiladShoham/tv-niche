@@ -28,7 +28,7 @@ module stage(){
 
 mainHoleWidth = 115;
 mainHoleHeight = 60;
-mainHoleDepth = mainFrameDepth + 
+mainHoleDepth = mainFrameDepth + stageDepth;
 
 module mainHole(){
     translate([0, wallDepth, 0]){
