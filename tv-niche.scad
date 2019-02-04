@@ -15,26 +15,59 @@ module mainFrame(){
 
 stageWidth = 180;
 stageHeight = 105;
+stageDepth = 7;
 
 module stage(){ 
     stageLeft = (wallWidth - stageWidth) / 2;
     stageUp = (wallHeight - stageHeight) / 2;
     stageOut = mainFrameDepth + mainFrameDepth;
     translate([stageLeft,stageOut,stageUp]){
-        color("grey") cube([stageWidth,7, stageHeight]);
+        color("grey") cube([stageWidth, stageDepth, stageHeight]);
     }
 }
 
-module speakers(){
+mainHoleWidth = 115;
+mainHoleHeight = 60;
+mainHoleDepth = mainFrameDepth + 
+
+module mainHole(){
+    translate([0, wallDepth, 0]){
+        color("white") cube([mainHoleWidth,mainFrameDepth, mainHoleHeight]);
+    }
+}
+
+module baseSpeaker(){
     color("black") cube([17,10, 43.3]);
 }
 
 module rightSpeaker(){
-    translate([50,5,50]) speakers();
+    translate([50,mainFrameDepth,50]) baseSpeaker();
 }
 
-wall();
-mainFrame();
-rightSpeaker();
-stage();
+module outObjects(){
+    union(){
+        wall();
+        mainFrame();
+        stage();
+    }
+}
+
+module inObjects(){
+    union(){
+        rightSpeaker();
+    }
+}
+
+module all(){
+    difference(){
+        outObjects();
+        inObjects();
+    }
+}
+
+all();
+// wall();
+// mainFrame();
+// rightSpeaker();
+// stage();
 
