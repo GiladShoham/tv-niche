@@ -36,12 +36,24 @@ module mainHole(){
     }
 }
 
+speakerWidth = 17;
+speakerHeight = 43.3;
+speakerDepth = 10;
+
 module baseSpeaker(){
     color("black") cube([17,10, 43.3]);
 }
 
 module rightSpeaker(){
     translate([50,mainFrameDepth,50]) baseSpeaker();
+}
+
+module centerSpeaker(){
+    centerTop = 55;
+    centerLeft = (wallWidth - speakerHeight) / 2;
+    translate([centerLeft, mainFrameDepth, centerTop]) {
+        rotate([0, 90, 0]) baseSpeaker();
+    }
 }
 
 module outObjects(){
@@ -55,6 +67,7 @@ module outObjects(){
 module inObjects(){
     union(){
         rightSpeaker();
+        centerSpeaker();
     }
 }
 
