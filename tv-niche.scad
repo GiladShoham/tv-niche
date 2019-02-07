@@ -20,19 +20,23 @@ stageDepth = 7;
 module stage(){ 
     stageLeft = (wallWidth - stageWidth) / 2;
     stageUp = (wallHeight - stageHeight) / 2;
-    stageOut = mainFrameDepth + mainFrameDepth;
+    stageOut = wallDepth + mainFrameDepth;
     translate([stageLeft,stageOut,stageUp]){
         color("grey") cube([stageWidth, stageDepth, stageHeight]);
     }
 }
 
-mainHoleWidth = 115;
+mainHoleWidth = 110;
 mainHoleHeight = 60;
 mainHoleDepth = mainFrameDepth + stageDepth;
 
 module mainHole(){
-    translate([0, wallDepth, 0]){
-        color("white") cube([mainHoleWidth,mainFrameDepth, mainHoleHeight]);
+    mainHoleLeft = (wallWidth - mainHoleWidth) / 2;
+    mainHoleUp = (wallHeight - mainHoleHeight) / 2;
+    mainHoleOut = wallDepth;
+    echo(str("mainHoleDepth = ", mainHoleDepth));
+    translate([mainHoleLeft, mainHoleOut, mainHoleUp]){
+        color("white") cube([mainHoleWidth, mainHoleDepth, mainHoleHeight]);
     }
 }
 
@@ -68,6 +72,7 @@ module inObjects(){
     union(){
         rightSpeaker();
         centerSpeaker();
+        mainHole();
     }
 }
 
@@ -79,6 +84,7 @@ module all(){
 }
 
 all();
+// inObjects();
 // wall();
 // mainFrame();
 // rightSpeaker();
