@@ -1,4 +1,4 @@
-wallWidth = 410;
+wallWidth = 396;
 wallHeight = 300;
 wallDepth = 5;
 mainFrameDepth = 10;
